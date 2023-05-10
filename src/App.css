@@ -14,7 +14,8 @@ input {
   text-align: center;
   margin: auto;
   padding: 10px;
-  width: 365px;
+  width: 500px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 

@@ -21,19 +21,26 @@ app.use(cors());
 
 app.post("/", async (req, res) => {
   const { message } = req.body;
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `${message}`,
-    max_tokens: 2000,
-    temperature: 0,
+  // const response = await openai.createChatCompletion({
+  //   model: "gpt-3.5-turbo",
+  //   messages: [{ role: "user", content: message }],
+  //   max_tokens: 1000,
+  // });
+  const response = await openai.createImage({
+    prompt: message,
+    n: 1,
+    size: "1024x1024",
   });
   console.log(response.data);
   if (response.data) {
-    if (response.data.choices) {
-      res.json({
-        message: response.data.choices[0].text,
-      });
-    }
+    // if (response.data.choices) {
+    //   res.json({
+    //     message: response.data.choices[0].message.content,
+    //   });
+    // }
+    res.json({
+      imgUrl: response.data.data[0].url,
+    });
   }
 });
 
